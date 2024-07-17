@@ -14,8 +14,8 @@ intents.message_content = True
 bot = commands.Bot(intents=intents, command_prefix="/") 
 
 # IDs for the channel and role
-CHANNEL_ID = 1263170728555974698
-ROLE_ID = 1263177919673405543
+CHANNEL_ID = CHANNEL_ID_GOES_HERE
+ROLE_ID = ROLE_ID_GOES_HERE
 
 # Path to the directory with question files and the file to track asked questions
 QUESTIONS_DIR = './lists/'
