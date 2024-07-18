@@ -69,6 +69,7 @@ async def send_daily_message():
 
     # Send the message and pin it
     message = await channel.send(content=f"<@&{ROLE_ID}>", embed=embed)
+    print(f"Automated: Question posted: {question}")
     await message.pin()
 
     # Unpin the previous message
@@ -85,6 +86,9 @@ async def before_send_daily_message():
     if now >= next_noon:
         next_noon += timedelta(days=1)
     wait_time = (next_noon - now).total_seconds()
+    hours, remainder = divmod(wait_time, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    print(f"Bot started. Next question will be posted in {int(hours)} hours, {int(minutes)} minutes.")
     await asyncio.sleep(wait_time)
 
 @bot.slash_command(name="qotd", description="Immediately send the Question of the Day message.")
@@ -120,6 +124,7 @@ async def qotd(ctx: discord.ApplicationContext):
 
     # Send the message and pin it
     message = await channel.send(content=f"<@&{ROLE_ID}>", embed=embed)
+    print(f"Manual: Question posted: {question}")
     await message.pin()
 
     # Unpin the previous message
